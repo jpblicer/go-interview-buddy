@@ -53,15 +53,11 @@ func TestDeleteCompany(t *testing.T) {
 	resetCompanyList()
 	addCompanyList()
 
-	companyA := model.CompanyList[0]
-	companyB := model.CompanyList[1]
-
-	want := companyA.Name == "MegaCorp K.K."
-
+	want := "The element Testing K.K. was deleted."
 	got := model.DeleteCompany(0)
 
 	if got != want {
-		t.Errorf("got %v want %v", got, want)
+		t.Errorf("got %q want %q", got, want)
 	}
 
 }

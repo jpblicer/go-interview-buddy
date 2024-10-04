@@ -46,4 +46,12 @@ func ListCompany(index int) string {
 }
 
 // Delete
-func DeleteCompany() {}
+func DeleteCompany(index int) string {
+	company := CompanyList[index]
+
+	CompanyList = append(CompanyList[:index], CompanyList[index+1:]...)
+
+  confirm :=  fmt.Sprintf("The element %s was deleted.", company.Name)
+
+	return confirm
+}
