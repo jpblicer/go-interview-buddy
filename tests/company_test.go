@@ -26,8 +26,7 @@ func TestAddCompany(t *testing.T) {
 
 func TestListCompanies(t *testing.T) {
 	resetCompanyList()
-	model.AddCompany("Testing K.K.", "https://www.testcompany.com")
-	model.AddCompany("MegaCorp K.K.", "https://www.corp.com")
+	addCompanyList()
 
 	companies := model.ListCompanies()
 	want := "0: Testing K.K.\n1: MegaCorp K.K."
@@ -40,8 +39,7 @@ func TestListCompanies(t *testing.T) {
 
 func TestListCompany(t *testing.T) {
 	resetCompanyList()
-	model.AddCompany("Testing K.K.", "https://www.testcompany.com")
-	model.AddCompany("MegaCorp K.K.", "https://www.corp.com")
+	addCompanyList()
 
 	want := "Testing K.K.\nInterviews: 0\nWebsite: https://www.testcompany.com"
 	got := model.ListCompany(0)
@@ -53,4 +51,9 @@ func TestListCompany(t *testing.T) {
 
 func resetCompanyList() {
 	model.CompanyList = make([]*model.Company, 0)
+}
+
+func addCompanyList() {
+	model.AddCompany("Testing K.K.", "https://www.testcompany.com")
+	model.AddCompany("MegaCorp K.K.", "https://www.corp.com")
 }
