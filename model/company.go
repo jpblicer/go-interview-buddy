@@ -1,5 +1,10 @@
 package model
 
+import (
+	"fmt"
+	"strings"
+)
+
 type Company struct {
 	Name          string
 	Website       string
@@ -10,15 +15,26 @@ var CompanyList = make([]*Company, 0)
 
 // Create
 func AddCompany(name, website string) *Company {
-	return &Company{
+	company := &Company{
 		Name:          name,
 		Website:       website,
 		InterviewStep: 0,
 	}
+
+	CompanyList = append(CompanyList, company)
+	return company
 }
 
 // Read All
-func ListCompanies(){}
+func ListCompanies() string {
+	var names []string
+
+	for index, company := range CompanyList {
+		names = append(names, fmt.Sprintf("%d: %s", index, company.Name))
+	}
+
+	return strings.Join(names, "\n")
+}
 
 // Read One
 func ListCompany(companies string) string {
@@ -26,4 +42,4 @@ func ListCompany(companies string) string {
 }
 
 // Delete
-func DeleteCompany(){}
+func DeleteCompany() {}

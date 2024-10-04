@@ -7,6 +7,7 @@ import (
 )
 
 func TestAddCompany(t *testing.T) {
+	resetCompanyList()
 	name := "Testing K.K."
 	website := "https://www.testcompany.com"
 
@@ -24,11 +25,12 @@ func TestAddCompany(t *testing.T) {
 }
 
 func TestListCompanies(t *testing.T) {
+	resetCompanyList()
 	model.AddCompany("Testing K.K.", "https://www.testcompany.com")
 	model.AddCompany("MegaCorp K.K.", "https://www.corp.com")
 
 	companies := model.ListCompanies()
-	want := `Testing K.K.\nMegaCorp K.K.`
+	want := "0: Testing K.K.\n1: MegaCorp K.K."
 
 	if companies != want {
 		t.Errorf("Got %q, want %q", companies, want)
@@ -37,6 +39,7 @@ func TestListCompanies(t *testing.T) {
 }
 
 func TestListCompany(t *testing.T) {
+	resetCompanyList()
 	company := "Testing K.K."
 
 	want := "Testing K.K."
@@ -45,4 +48,8 @@ func TestListCompany(t *testing.T) {
 	if got != want {
 		t.Errorf("got %q want %q", got, want)
 	}
+}
+
+func resetCompanyList() {
+	model.CompanyList = make([]*model.Company, 0)
 }
