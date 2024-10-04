@@ -40,10 +40,11 @@ func TestListCompanies(t *testing.T) {
 
 func TestListCompany(t *testing.T) {
 	resetCompanyList()
-	company := "Testing K.K."
+	model.AddCompany("Testing K.K.", "https://www.testcompany.com")
+	model.AddCompany("MegaCorp K.K.", "https://www.corp.com")
 
-	want := "Testing K.K."
-	got := model.ListCompany(company)
+	want := "Testing K.K./nInterviews : 0/nWebsite: https://www.corp.com"
+	got := model.ListCompany(0)
 
 	if got != want {
 		t.Errorf("got %q want %q", got, want)
