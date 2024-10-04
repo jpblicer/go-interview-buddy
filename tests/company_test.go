@@ -8,7 +8,7 @@ import (
 
 func TestAddCompany(t *testing.T) {
 	name := "Testing K.K."
-	website := "https://testcompany.com"
+	website := "https://www.testcompany.com"
 
 	company := model.AddCompany(name, website)
 
@@ -24,10 +24,23 @@ func TestAddCompany(t *testing.T) {
 }
 
 func TestListCompanies(t *testing.T) {
+	model.AddCompany("Testing K.K.", "https://www.testcompany.com")
+	model.AddCompany("MegaCorp K.K.", "https://www.corp.com")
+
+	companies := model.ListCompanies()
+	want := `Testing K.K.\nMegaCorp K.K.`
+
+	if companies != want {
+		t.Errorf("Got %q, want %q", companies, want)
+	}
+
+}
+
+func TestListCompany(t *testing.T) {
 	company := "Testing K.K."
 
 	want := "Testing K.K."
-	got := model.ListCompanies(company)
+	got := model.ListCompany(company)
 
 	if got != want {
 		t.Errorf("got %q want %q", got, want)

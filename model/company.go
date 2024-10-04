@@ -6,6 +6,8 @@ type Company struct {
 	InterviewStep int
 }
 
+var CompanyList = make([]*Company, 0)
+
 // Create
 func AddCompany(name, website string) *Company {
 	return &Company{
@@ -16,10 +18,12 @@ func AddCompany(name, website string) *Company {
 }
 
 // Read All
-func ListCompanies(companies string) string {
+func ListCompanies(){}
+
+// Read One
+func ListCompany(companies string) string {
 	return "Testing K.K."
 }
 
-// Read One
-
 // Delete
+func DeleteCompany(){}
