@@ -49,6 +49,23 @@ func TestListCompany(t *testing.T) {
 	}
 }
 
+func TestDeleteCompany(t *testing.T) {
+	resetCompanyList()
+	addCompanyList()
+
+	companyA := model.CompanyList[0]
+	companyB := model.CompanyList[1]
+
+	want := companyA.Name == "MegaCorp K.K."
+
+	got := model.DeleteCompany(0)
+
+	if got != want {
+		t.Errorf("got %v want %v", got, want)
+	}
+
+}
+
 func resetCompanyList() {
 	model.CompanyList = make([]*model.Company, 0)
 }
