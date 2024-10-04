@@ -37,8 +37,12 @@ func ListCompanies() string {
 }
 
 // Read One
-func ListCompany(companies string) string {
-	return "Testing K.K."
+func ListCompany(index int) string {
+	company := CompanyList[index]
+
+	companyDetails := fmt.Sprintf("%s\nInterviews: %d\nWebsite: %s", company.Name, company.InterviewStep, company.Website)
+
+	return companyDetails
 }
 
 // Delete
