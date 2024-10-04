@@ -10,13 +10,13 @@ func TestAddCompany(t *testing.T) {
 	name := "Testing K.K."
 	website := "https://testcompany.com"
 
-	company := AddCompany(name, website)
+	company := model.AddCompany(name, website)
 
 	if company.Name != name {
 		t.Errorf("Got %q but Want %q", company.Name, name)
 	}
 	if company.Website != website {
-		t.Errorf("Got %q but Want %q", company.Website, name)
+		t.Errorf("Got %q but Want %q", company.Website, website)
 	}
 	if company.InterviewStep != 0 {
 		t.Errorf("Got %d but Want %d", company.InterviewStep, 0)
