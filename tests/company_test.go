@@ -38,15 +38,30 @@ func TestListCompanies(t *testing.T) {
 }
 
 func TestListCompany(t *testing.T) {
-	resetCompanyList()
-	addCompanyList()
+	t.Run("Should return a company based on index", func(t *testing.T) {
+		resetCompanyList()
+		addCompanyList()
 
-	want := "Testing K.K.\nInterviews: 0\nWebsite: https://www.testcompany.com"
-	got := model.ListCompany(0)
+		want := "Testing K.K.\nInterviews: 0\nWebsite: https://www.testcompany.com"
+		got := model.ListCompany(0)
 
-	if got != want {
-		t.Errorf("got %q want %q", got, want)
-	}
+		if got != want {
+			t.Errorf("got %q want %q", got, want)
+		}
+	})
+
+	t.Run("Should return an error if the company id is not valid", func(t *testing.T) {
+		resetCompanyList()
+		addCompanyList()
+
+		want := "Requested index is not valid"
+		got := model.ListCompany(9001)
+
+		if got != want {
+			t.Errorf("got %q want%q", got, want)
+		}
+	})
+
 }
 
 func TestDeleteCompany(t *testing.T) {
