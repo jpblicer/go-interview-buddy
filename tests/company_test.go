@@ -55,7 +55,7 @@ func TestListCompany(t *testing.T) {
 		addCompanyList()
 
 		want := "Requested index is not valid"
-		got := model.ListCompany(9001)
+		got := model.ListCompany(-1)
 
 		if got != want {
 			t.Errorf("got %q want%q", got, want)
