@@ -14,3 +14,6 @@ func Add(name string) Company {
 	return company
 }
 
+func List() []Company {
+	return companies
+}

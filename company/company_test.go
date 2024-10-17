@@ -29,6 +29,6 @@ func TestList(t *testing.T) {
 
 	if got != want {
 		t.Errorf("Expected %d but got %d", want, got)
-}
+	}
 
 }
