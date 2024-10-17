@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
+	"runtime"
 	"strings"
 
 	"github.com/jpblicer/go-interview-buddy/company"
@@ -30,7 +32,7 @@ func getUserMenuInput() {
 	if userInput == "1\n" {
 		AddCompany()
 	} else if userInput == "2\n" {
-		fmt.Println("List all Companies")
+		ListCompanies()
 	} else if userInput == "3\n" {
 		fmt.Println("Exit")
 	} else {
@@ -38,7 +40,6 @@ func getUserMenuInput() {
 	}
 
 }
-
 
 func AddCompany() {
 	fmt.Println("Please enter the name of the new Company:")
@@ -54,4 +55,31 @@ func AddCompany() {
 	fmt.Println()
 
 	displayMenu()
+}
+
+func ListCompanies() {
+	companies := company.List()
+
+	clearScreen()
+
+	fmt.Println("List of all Companies:")
+
+	for index, company := range companies {
+		fmt.Printf("%d) %s \n", index+1, company.Name)
+	}
+	fmt.Println()
+	fmt.Println()
+
+	displayMenu()
+}
+
+func clearScreen() {
+	var cmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("cmd", "/c", "cls") // Windows clear screen
+	} else {
+		cmd = exec.Command("clear") // Unix clear screen
+	}
+	cmd.Stdout = os.Stdout
+	cmd.Run()
 }
