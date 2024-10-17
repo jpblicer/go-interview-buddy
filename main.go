@@ -4,13 +4,13 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/jpblicer/go-interview-buddy/company"
 )
 
 func main() {
 	displayMenu()
-	getUserMenuInput()
 }
 
 func displayMenu() {
@@ -19,6 +19,7 @@ func displayMenu() {
 	fmt.Println("1) Add a Company")
 	fmt.Println("2) List all Companies")
 	fmt.Println("3) Exit")
+	getUserMenuInput()
 }
 
 func getUserMenuInput() {
@@ -27,13 +28,30 @@ func getUserMenuInput() {
 	userInput, _ := reader.ReadString('\n')
 
 	if userInput == "1\n" {
-		fmt.Println("Add a Company")
+		AddCompany()
 	} else if userInput == "2\n" {
 		fmt.Println("List all Companies")
 	} else if userInput == "3\n" {
 		fmt.Println("Exit")
 	} else {
-		main()
+		displayMenu()
 	}
 
+}
+
+
+func AddCompany() {
+	fmt.Println("Please enter the name of the new Company:")
+	reader := bufio.NewReader(os.Stdin)
+
+	userInput, _ := reader.ReadString('\n')
+	userInput = strings.TrimSpace(userInput)
+
+	company := company.Add(userInput)
+
+	fmt.Printf("Added company: %s", company.Name)
+	fmt.Println()
+	fmt.Println()
+
+	displayMenu()
 }
