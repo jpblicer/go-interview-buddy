@@ -4,24 +4,27 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+
+	"github.com/jpblicer/go-interview-buddy/company"
 )
 
 func main() {
+	displayMenu()
+	getUserMenuInput()
+}
+
+func displayMenu() {
 	fmt.Println("Welcome to Go Interview Buddy!")
 	fmt.Println("Please choose an option:")
 	fmt.Println("1) Add a Company")
 	fmt.Println("2) List all Companies")
 	fmt.Println("3) Exit")
-
-	getUserInput()
 }
 
-func getUserInput() {
+func getUserMenuInput() {
 	reader := bufio.NewReader(os.Stdin)
 
 	userInput, _ := reader.ReadString('\n')
-
-	fmt.Print(userInput)
 
 	if userInput == "1\n" {
 		fmt.Println("Add a Company")
