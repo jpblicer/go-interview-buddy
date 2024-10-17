@@ -6,3 +6,10 @@ type Company struct {
 	Interviews int
 }
 
+var companies = []Company{}
+
+func Add(name string) string {
+	company := Company{Name: name}
+	companies = append(companies, company)
+	return company.Name
+}
