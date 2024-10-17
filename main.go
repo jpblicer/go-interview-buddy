@@ -29,13 +29,14 @@ func getUserMenuInput() {
 
 	userInput, _ := reader.ReadString('\n')
 
-	if userInput == "1\n" {
+	switch userInput {
+	case "1\n":
 		AddCompany()
-	} else if userInput == "2\n" {
+	case "2\n":
 		ListCompanies()
-	} else if userInput == "3\n" {
-		fmt.Println("Exit")
-	} else {
+	case "3\n":
+		fmt.Println("Exiting...")
+	default:
 		displayMenu()
 	}
 
