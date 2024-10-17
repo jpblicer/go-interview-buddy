@@ -5,3 +5,4 @@ type Company struct {
 	Applied    bool
 	Interviews int
 }
+
