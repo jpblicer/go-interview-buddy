@@ -8,8 +8,9 @@ type Company struct {
 
 var companies = []Company{}
 
-func Add(name string) string {
+func Add(name string) Company {
 	company := Company{Name: name}
 	companies = append(companies, company)
-	return company.Name
+	return company
 }
+
